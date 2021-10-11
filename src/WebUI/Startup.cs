@@ -1,4 +1,5 @@
 using CleanDotnet.Application;
+using CleanDotnet.Application.Common.Interfaces;
 using CleanDotnet.Infrastructure;
 using CleanDotnet.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,9 @@ namespace CleanDotnet.WebUI
         {
             services.AddApplication();
             services.AddInfrastructure(Configuration);
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+
             services.AddHttpContextAccessor();
             services.AddHealthChecks().AddDbContextCheck<ApplicationDbContext>();
 
